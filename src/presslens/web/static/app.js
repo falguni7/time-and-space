@@ -232,6 +232,19 @@ function bindControls() {
   };
   $("live-speed").onchange = (e) => (state.live.speed = +e.target.value);
   $("follow").onchange = (e) => setFollow(e.target.value || null);
+  let tipHidden = false;
+  try { tipHidden = localStorage.getItem("ts-follow-tip") === "hidden"; } catch { /* storage unavailable */ }
+  $("follow-tip").classList.toggle("hidden", tipHidden);
+  $("follow-tip-x").onclick = () => {
+    $("follow-tip").classList.add("hidden");
+    try { localStorage.setItem("ts-follow-tip", "hidden"); } catch { /* storage unavailable */ }
+  };
+  $("follow-tip-go").onclick = () => {
+    const label = $("follow-label");
+    label.scrollIntoView({ behavior: "smooth", block: "center" });
+    label.classList.remove("flash"); void label.offsetWidth; label.classList.add("flash");
+    $("follow").focus();
+  };
   $("live-scrub").oninput = (e) => liveSeek((+e.target.value / 1000) * state.match.end_frame);
   $("scrub").oninput = (e) => { state.t = +e.target.value; state.holdUntil = 0; };
   $("speed").onchange = (e) => (state.speed = +e.target.value);
@@ -603,6 +616,7 @@ function setFollow(pid) {
   const L = state.live;
   L.follow = pid;
   $("follow").value = pid || "";
+  if (pid) $("follow-tip").classList.add("hidden");
   L.fstats = emptyStats();
   if (pid) for (let j = 0; j < L.i; j++) {
     const msg = L.feed[j];

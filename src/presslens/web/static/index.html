@@ -27,7 +27,7 @@
         <button id="live-play" class="btn" aria-label="Play or pause the match">❚❚</button>
         <span class="live-clock" id="live-clock">0'</span>
         <div class="live-track" id="live-track"><input id="live-scrub" type="range" min="0" max="1000" value="0" aria-label="Match time"><div class="marks" id="live-marks"></div></div>
-        <label class="speed">follow
+        <label class="speed" id="follow-label">follow a player
           <select id="follow" aria-label="Follow a player"></select>
         </label>
         <label class="speed">speed
@@ -53,6 +53,11 @@
       <section class="live" id="live">
         <h3 class="live-h">Live statistics</h3>
         <table class="stats" id="stats"></table>
+        <div class="tip" id="follow-tip">
+          <button class="tip-go" id="follow-tip-go">💡 <b>Follow one player all match:</b> use the <b>follow a player</b>
+            menu in the bar under the pitch, or pick the <b>Matteo Saltoro follower</b> viewer above. <u>Show me</u></button>
+          <button class="tip-x" id="follow-tip-x" aria-label="Hide this tip">×</button>
+        </div>
         <div class="player-card hidden" id="player-card"></div>
         <h3 class="live-h">Your alerts <small id="alerts-for"></small></h3>
         <div class="alerts" id="alerts" aria-live="polite"></div>

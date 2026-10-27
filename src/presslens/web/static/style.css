@@ -173,3 +173,10 @@ details summary { cursor: pointer; color: var(--muted); font-size: 13.5px; }
 .player-card dt { color: var(--muted); font-size: 11.5px; }
 .player-card dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
 .timeline .toggle.all { align-self: center; margin-left: 6px; font-size: 12px; }
+.tip { display: flex; align-items: flex-start; gap: 6px; margin: 10px 0 2px; padding: 8px 10px; border-radius: 8px;
+  background: #2a2618; border: 1px solid #5c4f22; font-size: 13px; }
+.tip-go { flex: 1; text-align: left; background: none; border: none; padding: 0; cursor: pointer; line-height: 1.4; }
+.tip-go u { color: var(--accent); }
+.tip-x { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 16px; line-height: 1; }
+.flash { animation: flash 1.6s ease-out 2; border-radius: 6px; }
+@keyframes flash { 0%, 100% { box-shadow: none; } 30% { box-shadow: 0 0 0 3px var(--accent); } }
