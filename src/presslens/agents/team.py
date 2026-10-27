@@ -110,11 +110,13 @@ class Team:
 
     async def critique(self, facts: str, text: str, reader: str = "a neutral reader") -> list[str]:
         """The Critic's objections to a text whose numbers and names already passed the Verifier.
-        It can only reject: when it cannot answer (offline, error) the text keeps its rule check."""
+        It can only reject. If a live Critic cannot answer (error, rate limit), the text is not let
+        through unreviewed: it counts as an objection, so the writer retries or the fallback is shown.
+        The offline backend has no Critic; there the text keeps its rule check."""
         prompt = f"Facts:\n{facts}\n\nThe text is written for: {reader}\n\nText to check:\n{text}"
         value, _ = await ask_structured(self.critic, prompt, Critique, temperature=0.0)
         if value is None:
-            return []
+            return [] if self.llm.backend == "offline" else ["the Critic could not review this text"]
         return [f'unsupported claim "{p.claim}": {p.reason}' for p in value.unsupported()]
 
     async def review(self, check: Check, facts: str, text: str, reader: str = "a neutral reader") -> Check:

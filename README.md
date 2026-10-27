@@ -146,6 +146,22 @@ were replaced by the safe fallback**. Of 31 rejections, the Critic raised 25 (e.
 team's persistent pressure: the facts do not mention any team pressure"*) and the Verifier 6. Next to
 every text the app shows which checks it passed and what was rejected before it.
 
+### On matches the agents had never seen
+
+The same team ran on 8 held-out matches (rounds 11–12, all 8 clubs), five viewers each: 97 moments and
+320 personal texts (`python -m presslens.agents.evaluate --backend azure --max-matches 8`).
+
+| Text | First try | After a rewrite | Safe fallback |
+|---|---|---|---|
+| **Viewer versions** (320) | **81%** | 16% | **2%** |
+| Neutral explanations (97) | 73% | 21% | 6% |
+
+- **Every kind of viewer:** casual 88% first try, supporters 84%, player followers 78%, analyst 72% (plus 25%
+  after a rewrite). The fallback rate is 2–3% for each.
+- **Every language:** English 82% first try, German 83%, Spanish 78%.
+- **Recovery:** the Critic raised 102 objections and the Verifier 5; rewrites resolved almost all of them.
+- **Genuinely personal:** two viewers' versions of the same moment share only 31% of their words.
+
 ## Built with
 
 - **Azure AI Foundry**: `gpt-4.1-mini` deployment for every agent.

@@ -17,6 +17,7 @@ tool-calling loop, so each model round trip of an agent is cached on its own.
 
 from __future__ import annotations
 
+import asyncio
 import hashlib
 import json
 import os
@@ -48,6 +49,9 @@ CLAUDE_BASE_URL = "https://api.anthropic.com/v1/"
 DEFAULT_CLAUDE_MODEL = "claude-sonnet-5-5"
 MAX_RETRIES = 6        # openai client retries 429/5xx with exponential backoff
 TIMEOUT_S = 60.0
+# At most this many model requests in flight at once (cache hits are not limited). Feeds fan out to
+# a persona per viewer per moment; without a cap a small deployment answers 429 (rate limit).
+MAX_IN_FLIGHT = int(os.environ.get("PRESSLENS_MAX_IN_FLIGHT", "3"))
 
 
 def _load_env() -> None:
@@ -159,10 +163,11 @@ class CallStats:
 class CacheMiddleware(ChatMiddleware):
     """Serve repeated requests from disk; store new ones. Streaming calls pass straight through."""
 
-    def __init__(self, cache: ResponseCache, model: str):
+    def __init__(self, cache: ResponseCache, model: str, max_in_flight: int = MAX_IN_FLIGHT):
         self.cache = cache
         self.model = model
         self.stats = CallStats()
+        self.gate = asyncio.Semaphore(max_in_flight)
 
     async def process(self, context: ChatContext, call_next) -> None:
         if context.stream:
@@ -175,8 +180,9 @@ class CacheMiddleware(ChatMiddleware):
             context.result = cached
             self.stats.hits += 1
             return
-        t0 = time.time()
-        await call_next()
+        async with self.gate:
+            t0 = time.time()
+            await call_next()
         result = context.result
         if isinstance(result, ChatResponse):
             if is_offline_miss(result):

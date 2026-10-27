@@ -50,7 +50,9 @@ def profiles_for(match_id: str) -> list[Profile]:
 
 
 def checker(issue: str) -> str:
-    return "critic" if issue.startswith("unsupported claim") else "verifier"
+    if issue.startswith("unsupported claim"):
+        return "critic"
+    return "critic_no_answer" if "Critic could not review" in issue else "verifier"
 
 
 def verifier_kind(issue: str) -> str:
