@@ -1,0 +1,138 @@
+{
+ "R01_RIV-STO-M000": {
+  "clip": "R01_RIV-STO_308",
+  "index": 60,
+  "frame": 368,
+  "type": "press_broken",
+  "clock": "1'",
+  "team": "STO"
+ },
+ "R01_RIV-STO-M001": {
+  "clip": "R01_RIV-STO_1261",
+  "index": 60,
+  "frame": 1321,
+  "type": "goal",
+  "clock": "3'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M003": {
+  "clip": "R01_RIV-STO_5635",
+  "index": 60,
+  "frame": 5695,
+  "type": "momentum_swing",
+  "clock": "10'",
+  "team": "STO"
+ },
+ "R01_RIV-STO-M009": {
+  "clip": "R01_RIV-STO_7883",
+  "index": 60,
+  "frame": 7943,
+  "type": "missed_option",
+  "clock": "14'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M013": {
+  "clip": "R01_RIV-STO_15386",
+  "index": 60,
+  "frame": 15446,
+  "type": "big_chance",
+  "clock": "26'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M017": {
+  "clip": "R01_RIV-STO_17625",
+  "index": 60,
+  "frame": 17685,
+  "type": "press_broken",
+  "clock": "30'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M020": {
+  "clip": "R01_RIV-STO_21544",
+  "index": 60,
+  "frame": 21604,
+  "type": "goal",
+  "clock": "37'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M025": {
+  "clip": "R01_RIV-STO_26938",
+  "index": 60,
+  "frame": 26998,
+  "type": "momentum_swing",
+  "clock": "45'",
+  "team": "STO"
+ },
+ "R01_RIV-STO-M027": {
+  "clip": "R01_RIV-STO_27995",
+  "index": 60,
+  "frame": 28055,
+  "type": "press_broken",
+  "clock": "45+2'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M031": {
+  "clip": "R01_RIV-STO_31349",
+  "index": 60,
+  "frame": 31409,
+  "type": "big_chance",
+  "clock": "51'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M037": {
+  "clip": "R01_RIV-STO_36281",
+  "index": 60,
+  "frame": 36341,
+  "type": "goal",
+  "clock": "59'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M038": {
+  "clip": "R01_RIV-STO_38583",
+  "index": 60,
+  "frame": 38643,
+  "type": "momentum_swing",
+  "clock": "63'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M039": {
+  "clip": "R01_RIV-STO_38730",
+  "index": 60,
+  "frame": 38790,
+  "type": "big_chance",
+  "clock": "63'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M044": {
+  "clip": "R01_RIV-STO_49301",
+  "index": 60,
+  "frame": 49361,
+  "type": "press_trap",
+  "clock": "81'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M045": {
+  "clip": "R01_RIV-STO_49301",
+  "index": 104,
+  "frame": 49405,
+  "type": "press_broken",
+  "clock": "81'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M046": {
+  "clip": "R01_RIV-STO_49301",
+  "index": 124,
+  "frame": 49425,
+  "type": "goal",
+  "clock": "81'",
+  "team": "RIV"
+ },
+ "R01_RIV-STO-M050": {
+  "clip": "R01_RIV-STO_54354",
+  "index": 60,
+  "frame": 54414,
+  "type": "goal",
+  "clock": "89'",
+  "team": "STO"
+ }
+}

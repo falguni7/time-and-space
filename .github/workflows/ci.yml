@@ -1,0 +1,65 @@
+# Build and test the judges' Docker image, then publish the demo as a static site on GitHub Pages.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  app:
+    name: Docker image + web tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the demo image (docker compose)
+        run: docker compose build app
+
+      - name: Start it and check every file the page needs
+        run: |
+          docker compose up -d app
+          for i in $(seq 1 30); do curl -sf http://localhost:8000/data/app.json > /dev/null && break; sleep 1; done
+          for path in / static/app.js data/app.json data/clips/R01_RIV-STO_49301.json \
+                      data/live/R01_RIV-STO.jsonl data/live/R01_RIV-STO_tracking.json api/demo; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8000/$path")
+            echo "$code  /$path"; test "$code" = 200
+          done
+          docker compose down
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Web and live-feed tests
+        run: |
+          pip install -r docker/requirements-app.txt pytest==9.1.1 httpx
+          PYTHONPATH=src python -m pytest -q tests/test_web.py
+
+  pages:
+    name: Publish to GitHub Pages
+    needs: app
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build the static site
+        run: PYTHONPATH=src python -m presslens.web.site --out build/site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/site
+      - id: deploy
+        uses: actions/deploy-pages@v4

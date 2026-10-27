@@ -1,0 +1,59 @@
+# The 8 fictional clubs of the PressLens league.
+#
+# `tactics` is the hidden ground truth the engine's metrics are validated against:
+#   press_intensity   0-1  how close defenders get to the carrier and to passing options
+#   press_height      high | mid | low   where the team starts pressing
+#   compactness       0-1  how narrow and short the shape is without the ball
+#   decision_quality  0-1  how often the carrier picks the best option
+#   tempo             0-1  how quickly players release the ball
+#
+# `tier` sets squad strength when players are generated: strong ~80, mid ~76, weak ~73 average OVR.
+
+clubs:
+  - id: RIV
+    name: Riverside Reds
+    tier: strong
+    colors: {primary: "#d62828", secondary: "#ffffff"}
+    tactics: {formation: "4-3-3", press_intensity: 0.85, press_height: high, compactness: 0.70, decision_quality: 0.80, tempo: 0.75}
+
+  - id: NOR
+    name: Northgate Blues
+    tier: strong
+    colors: {primary: "#1d4ed8", secondary: "#f8fafc"}
+    tactics: {formation: "4-2-3-1", press_intensity: 0.60, press_height: mid, compactness: 0.75, decision_quality: 0.90, tempo: 0.45}
+
+  - id: HAR
+    name: Harbour Teal
+    tier: mid
+    colors: {primary: "#0f766e", secondary: "#fde68a"}
+    tactics: {formation: "3-5-2", press_intensity: 0.70, press_height: high, compactness: 0.60, decision_quality: 0.65, tempo: 0.70}
+
+  - id: ASH
+    name: Ashford Violets
+    tier: mid
+    colors: {primary: "#7c3aed", secondary: "#f5f3ff"}
+    tactics: {formation: "4-4-2", press_intensity: 0.40, press_height: mid, compactness: 0.80, decision_quality: 0.60, tempo: 0.35}
+
+  - id: KIN
+    name: Kingsbridge Orange
+    tier: mid
+    colors: {primary: "#f97316", secondary: "#111827"}
+    tactics: {formation: "4-3-3", press_intensity: 0.55, press_height: mid, compactness: 0.65, decision_quality: 0.70, tempo: 0.60}
+
+  - id: MIL
+    name: Millbrook Greens
+    tier: mid
+    colors: {primary: "#15803d", secondary: "#ffffff"}
+    tactics: {formation: "4-2-3-1", press_intensity: 0.30, press_height: low, compactness: 0.85, decision_quality: 0.65, tempo: 0.80}
+
+  - id: EAS
+    name: Eastvale Whites
+    tier: weak
+    colors: {primary: "#f8fafc", secondary: "#0c4a6e"}
+    tactics: {formation: "4-4-2", press_intensity: 0.20, press_height: low, compactness: 0.75, decision_quality: 0.60, tempo: 0.60}
+
+  - id: STO
+    name: Stonebridge Golds
+    tier: weak
+    colors: {primary: "#facc15", secondary: "#1f2937"}
+    tactics: {formation: "3-5-2", press_intensity: 0.65, press_height: high, compactness: 0.50, decision_quality: 0.45, tempo: 0.65}

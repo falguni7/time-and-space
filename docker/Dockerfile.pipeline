@@ -1,0 +1,22 @@
+# Time and Space - the whole pipeline, rebuilt from scratch inside the container:
+# simulate the season, build the engine (xT, xPass, decisions, metrics cube, moments), replay the
+# recorded agent answers (or re-run the agents live with your own Azure key), export clips, serve.
+#   docker compose --profile pipeline up --build pipeline      ->  http://localhost:8001
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONPATH=/app/src HOST=0.0.0.0 PORT=8000 \
+    OMP_NUM_THREADS=8 MKL_NUM_THREADS=8 OPENBLAS_NUM_THREADS=8
+WORKDIR /app
+
+COPY docker/requirements-pipeline.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
+
+COPY pyproject.toml ./
+COPY configs configs
+COPY src src
+COPY tests tests
+COPY demo demo
+COPY docker/pipeline.sh docker/pipeline.sh
+
+EXPOSE 8000
+CMD ["bash", "docker/pipeline.sh"]

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Time and Space</title>
+  <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">Time and Space</div>
+    <div class="scoreline" id="scoreline"></div>
+    <nav class="modes" aria-label="View">
+      <button class="mode active" data-mode="live">Live match</button>
+      <button class="mode" data-mode="moments">Key moments</button>
+    </nav>
+    <div class="model" id="model"></div>
+  </header>
+
+  <main class="layout">
+    <section class="stage">
+      <div class="pitch-wrap">
+        <canvas id="pitch" aria-label="Animated tracking of the selected moment"></canvas>
+        <div class="caption" id="caption"></div>
+      </div>
+      <div class="live-controls" id="live-controls">
+        <button id="live-play" class="btn" aria-label="Play or pause the match">❚❚</button>
+        <span class="live-clock" id="live-clock">0'</span>
+        <div class="live-track" id="live-track"><input id="live-scrub" type="range" min="0" max="1000" value="0" aria-label="Match time"><div class="marks" id="live-marks"></div></div>
+        <label class="speed">follow
+          <select id="follow" aria-label="Follow a player"></select>
+        </label>
+        <label class="speed">speed
+          <select id="live-speed"><option value="1">1×</option><option value="3">3×</option><option value="10">10×</option><option value="30" selected>30×</option><option value="90">90×</option></select>
+        </label>
+      </div>
+      <div class="controls" id="moment-controls">
+        <button id="play" class="btn" aria-label="Play or pause">❚❚</button>
+        <button id="replay" class="btn" aria-label="Replay">↺</button>
+        <input id="scrub" type="range" min="0" max="100" value="0" aria-label="Clip position">
+        <label class="speed">speed
+          <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
+        </label>
+        <label class="toggle"><input id="slowmo" type="checkbox" checked> slow-mo at key frame</label>
+      </div>
+      <div class="legend" id="legend"></div>
+      <div class="timeline" id="timeline" aria-label="Moments of the match"></div>
+      <div class="ticker" id="ticker" aria-live="polite" aria-label="Match events"></div>
+    </section>
+
+    <aside class="panel">
+      <nav class="viewers" id="viewers" aria-label="Viewer"></nav>
+      <section class="live" id="live">
+        <h3 class="live-h">Live statistics</h3>
+        <table class="stats" id="stats"></table>
+        <div class="player-card hidden" id="player-card"></div>
+        <h3 class="live-h">Your alerts <small id="alerts-for"></small></h3>
+        <div class="alerts" id="alerts" aria-live="polite"></div>
+      </section>
+      <article class="story hidden" id="story"></article>
+    </aside>
+  </main>
+
+  <section class="below">
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="recap" role="tab">Match recap</button>
+      <button class="tab" data-tab="answers" role="tab">Ask the analyst</button>
+      <button class="tab" data-tab="how" role="tab">How it works</button>
+    </div>
+    <div id="tab-recap" class="tabpane"></div>
+    <div id="tab-answers" class="tabpane hidden"></div>
+    <div id="tab-how" class="tabpane hidden">
+      <ol class="how">
+        <li><b>Tracking → metrics.</b> For every pass: pressure on the passer (nearest defender, 1 = within 1 m),
+          every passing option's chance of arriving (xPass) and value, the decision gap (best minus chosen), and the
+          change in expected threat (xT).</li>
+        <li><b>Moment cards.</b> Code picks the moments: press traps, presses broken, better passes missed, goals.</li>
+        <li><b>Fact sheet.</b> Code, not a model, writes what may be said, including how the pass compares with the
+          league in the same third under the same pressure.</li>
+        <li><b>Agents.</b> Explainer writes a neutral text; a rule-based Verifier checks every number and name; a
+          Critic agent checks the meaning; Persona agents rewrite it for each viewer and language, and are checked again.
+          Two failures → a safe fallback is shown instead.</li>
+        <li><b>Relevance.</b> A selector builds each viewer's feed (club, player, kind of viewer) and says why.</li>
+        <li><b>Analyst.</b> Answers league questions by querying the metrics cube through MCP tools, with sample sizes
+          and confidence intervals.</li>
+      </ol>
+    </div>
+  </section>
+
+  <script src="static/app.js"></script>
+</body>
+</html>

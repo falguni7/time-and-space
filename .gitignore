@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Generated data (simulated matches, metrics cube, models)
+data/*
+!data/README.md
+*.parquet
+*.duckdb
+*.jsonl
+!demo/live/*.jsonl
+
+# Secrets (model API keys)
+.env
+
+# Container images live outside the repo
+*.sif

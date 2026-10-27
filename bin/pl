@@ -1,0 +1,15 @@
+#!/bin/bash
+# Run a command inside the PressLens container with the presslens package (src/) importable.
+#   bin/pl python -m pytest
+#   bin/pl python -m presslens.sim ...
+set -euo pipefail
+
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SIF="${PRESSLENS_SIF:-$REPO/../container_presslens/presslens.sif}"
+
+cd "$REPO"
+# Math libraries start one thread per core; on a shared, busy node those threads fight each other and
+# a 5 s test takes 10+ min. Cap them (override by setting the variables before calling bin/pl).
+export OMP_NUM_THREADS="${OMP_NUM_THREADS:-8}" MKL_NUM_THREADS="${MKL_NUM_THREADS:-8}" \
+       OPENBLAS_NUM_THREADS="${OPENBLAS_NUM_THREADS:-8}" NUMBA_NUM_THREADS="${NUMBA_NUM_THREADS:-8}"
+exec apptainer exec --env "PYTHONPATH=$REPO/src" "$SIF" "$@"

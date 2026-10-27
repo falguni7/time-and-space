@@ -1,0 +1,31 @@
+{
+  "features": [
+    "intercept",
+    "log_distance",
+    "angle",
+    "header",
+    "free_kick"
+  ],
+  "coefficients": {
+    "intercept": 0.02411,
+    "log_distance": -1.0867,
+    "angle": 1.01817,
+    "header": -0.21204,
+    "free_kick": -0.99836
+  },
+  "penalty_xg": 0.78,
+  "trained_on": {
+    "matches": 56,
+    "shots": 1330,
+    "goals": 133,
+    "seeds": [
+      50000,
+      50055
+    ]
+  },
+  "check": {
+    "goals_per_provider_xg": 1.0,
+    "corr_with_true_xg": 0.895,
+    "mean_abs_error_vs_true_xg": 0.0269
+  }
+}

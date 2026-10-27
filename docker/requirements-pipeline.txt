@@ -1,0 +1,21 @@
+# The whole pipeline (simulation -> engine -> MCP server -> agents -> web), pinned to the versions
+# the project was developed and tested with (Python 3.11, NumPy 1.x stack).
+numpy==1.23.5
+pandas==1.5.3
+scipy==1.12.0
+scikit-learn==1.2.2
+pyarrow==19.0.1
+duckdb==2.0.0
+PyYAML==6.0.2
+matplotlib==3.7.0
+pydantic==2.14.1
+python-dotenv==1.2.4
+openai==3.39.0
+mcp==2.3.0
+agent-framework-core==1.23.0
+agent-framework-openai==1.17.0
+agent-framework-orchestrations==1.4.0
+fastapi==0.162.0
+starlette==1.10.0
+uvicorn==0.54.0
+pytest==9.1.1

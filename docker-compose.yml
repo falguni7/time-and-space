@@ -1,0 +1,28 @@
+# Time and Space
+#   docker compose up --build                                  demo app on http://localhost:8000 (no key)
+#   docker compose --profile pipeline up --build pipeline      rebuild everything, app on http://localhost:8001
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+
+  pipeline:
+    profiles: ["pipeline"]
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.pipeline
+    ports:
+      - "8001:8000"
+    env_file:
+      - path: .env          # optional: AZURE_AI_ENDPOINT, AZURE_AI_API_KEY, AZURE_AI_DEPLOYMENT
+        required: false
+    environment:
+      REBUILD_DEMO: ${REBUILD_DEMO:-0}
+    volumes:
+      - pipeline-data:/app/data
+
+volumes:
+  pipeline-data:
