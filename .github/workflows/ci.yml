@@ -24,10 +24,11 @@ jobs:
         run: |
           docker compose up -d app
           for i in $(seq 1 30); do curl -sf http://localhost:8000/data/app.json > /dev/null && break; sleep 1; done
-          for path in / static/app.js data/app.json data/clips/R01_RIV-STO_49301.json \
+          for path in "" static/app.js data/app.json data/clips/R01_RIV-STO_49301.json \
                       data/live/R01_RIV-STO.jsonl data/live/R01_RIV-STO_tracking.json api/demo; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8000/$path")
-            echo "$code  /$path"; test "$code" = 200
+            echo "$code  /$path"
+            if [ "$code" != 200 ]; then docker compose logs app; exit 1; fi
           done
           docker compose down
 
