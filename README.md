@@ -2,7 +2,7 @@
 
 [![ci](https://github.com/falguni7/time-and-space/actions/workflows/ci.yml/badge.svg)](https://github.com/falguni7/time-and-space/actions/workflows/ci.yml)
 
-**▶ Live demo: https://falguni7.github.io/time-and-space/** · Demo video: *(link to follow)*
+**▶ Live demo: https://falguni7.github.io/time-and-space/** · **Demo video (1:56): https://www.youtube.com/watch?v=6bTeh-4sq8A**
 
 **How much time and space does the player on the ball really have, and what does it cost the team
 when they don't?** Time and Space measures the pressure on every pass from tracking data and links it
