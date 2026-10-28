@@ -13,7 +13,11 @@ claim is reviewed by a Critic agent before anyone sees it.
 
 All clubs, players and matches are fictional and simulated.
 
-<!-- screenshot: docs/screenshot.png -->
+![Live match: following Matteo Saltoro at 30', with sprint badges, live statistics, his player card and the analyst's alerts](docs/Screenshot_live.png)
+*Live match: the feed is ingested event by event; here the viewer follows one player.*
+
+![Key moment at 81': pressure ring, passing options coloured by xPass, chosen and best pass, the analyst's verified text and the league comparison](docs/Screenshot_moment.png)
+*Key moment: the 81' press, explained for the analyst, checked by the Verifier and the Critic, and compared with the league.*
 
 ## Try it
 
