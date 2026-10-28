@@ -1,4 +1,4 @@
-# Build and test the judges' Docker image, then publish the demo as a static site on GitHub Pages.
+# Build and test the demo Docker image, then publish the demo as a static site on GitHub Pages.
 name: ci
 
 on:

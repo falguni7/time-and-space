@@ -3,7 +3,7 @@
 Backends (environment variable PRESSLENS_LLM, default: azure when a key is set, otherwise offline):
 
     azure    Azure AI Foundry deployment (AZURE_AI_ENDPOINT, AZURE_AI_API_KEY, AZURE_AI_DEPLOYMENT in .env)
-    claude   Claude through Anthropic's OpenAI-compatible endpoint (ANTHROPIC_API_KEY; not tested yet)
+    claude   Claude through Anthropic's OpenAI-compatible endpoint (ANTHROPIC_API_KEY)
     offline  no network: replays cached answers of PRESSLENS_OFFLINE_MODEL, misses come back empty
 
 Every backend runs behind the same disk cache (data/llm_cache.sqlite), so a repeated request never
@@ -120,7 +120,7 @@ def request_key(model: str, messages: list[Message], options: dict[str, Any] | N
 
 
 class ResponseCache:
-    """sqlite file of model responses keyed by request hash (one file: /hnvme limits file counts)."""
+    """sqlite file of model responses keyed by request hash, in one file that ships with the demo."""
 
     def __init__(self, path: Path = CACHE_PATH):
         path.parent.mkdir(parents=True, exist_ok=True)

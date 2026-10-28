@@ -6,7 +6,7 @@ Plain code, no model: it is free, repeatable and explainable. A moment's score i
 
 and the feed is filled greedily up to the viewer's alert budget, with goals first and a penalty
 for repeating a type or crowding the same few minutes. Every pick carries its reasons, so the app
-can say "your player is involved" and the judges can see why the agents wrote about it.
+can say "your player is involved" and every viewer can see why the agents wrote about it.
 """
 
 from __future__ import annotations

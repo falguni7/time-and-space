@@ -6,7 +6,7 @@
 `build` runs the feeds (five viewers), the pressing key moments for every viewer, recaps and analyst questions for the demo matches and
 records every model call in demo/llm_cache.sqlite, plus the finished texts in demo/demo.json.
 `check` runs the same requests on the offline backend: each answer must come from the cache and
-match the recorded text, so the judges' build shows exactly what the video shows, without a key.
+match the recorded text, so the Docker build and the hosted site show exactly what the video shows, without a key.
 """
 
 from __future__ import annotations

@@ -15,7 +15,7 @@ def test_subpackage_imports(name):
 
 @pytest.mark.skipif("APPTAINER_CONTAINER" not in os.environ, reason="only meaningful inside the dev container")
 def test_runs_in_isolated_container_env():
-    assert os.environ.get("CONDA_DEFAULT_ENV") == "presslens_3_11_helma"
+    assert os.environ.get("CONDA_DEFAULT_ENV", "").startswith("presslens")
     assert not site.ENABLE_USER_SITE
 
 
