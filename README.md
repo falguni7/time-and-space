@@ -195,6 +195,34 @@ call and reproduces every text exactly.
 - **Languages:** English, German and Spanish in the demo; any language the model writes.
 - Not included: auto-eventing from video. The events come from the simulator's provider feed.
 
+## A whole league, simulated from scratch
+
+Every number in the app comes from a league built for this project, down to each player:
+
+- **8 clubs**, each with a formation (4-3-3, 4-2-3-1, 3-5-2 or 4-4-2), kit colours and a playing style:
+  press intensity, press height, compactness, decision quality and tempo. Riverside Reds press high
+  and hard (intensity 0.85); Millbrook Greens sit in a low block (0.30) and play fast.
+- **144 players**, a squad of 18 per club (11 starters and 7 substitutes), each with a name, shirt
+  number, one of 14 positions, age, height, preferred foot and attacking and defensive work rates.
+- **23 ratings per player** (0–99) in 7 groups: pace, shooting, passing, dribbling, defending, physical
+  and goalkeeping. An overall rating weighted by role (66–89; club averages from 71 to 80 by tier), and
+  playstyles such as *Press Trigger*, *Press Resistant*, *Interceptor*, *Clinical*, *Rapid*, *Tiki-Taka*,
+  *Engine* and *Line Breaker*.
+- **Every rating changes how a player plays.** Sprint speed sets top speed (7.0–9.7 m/s), acceleration
+  how quickly it is reached, stamina how fast a player tires, vision how far a player looks for a pass
+  (18–55 m), passing ratings how accurate the ball is, composure how much pressure spoils decisions,
+  aggression how hard a player presses, interceptions how much of a passing lane is covered, and a
+  goalkeeper's ratings the chance of a save. Work rates set attacking runs and tracking back; *Press Resistant* halves the pressure
+  penalty, *Engine* tires 30% slower.
+- **Matches** move 22 players and the ball at 10 Hz: real ball flight (receivers run to meet the pass),
+  pressing and marking, tackles, interceptions and clearances, fouls, corners, free kicks with walls,
+  penalties, fatigue and substitutions. A double round robin gives a season of 56 matches.
+- **Hidden truth:** club styles and player ratings never reach the engine or the agents. They are only
+  used to check that the metrics measure the right thing (next section).
+
+Clubs and squads: [`configs/clubs.yaml`](configs/clubs.yaml), [`configs/players.yaml`](configs/players.yaml)
+(also as [`players.csv`](configs/players.csv)); the simulator: [`src/presslens/sim`](src/presslens/sim).
+
 ## Does it measure the right thing?
 
 The simulator keeps hidden ground truth that the engine never reads (`engine/data.py` refuses it).
